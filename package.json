@@ -1,0 +1,20 @@
+{
+  "name": "ds19-plenary-demos",
+  "version": "1.0.0",
+  "description": "Demos for Dev Summit 2019 Plenary",
+  "scripts": {
+    "prettify": "prettier --write \"{editor,form-based-editing}/**/*\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://devtopia.esri.com/juan6600/ds19-plenary-demos/"
+  },
+  "author": "jcfranco",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@types/arcgis-js-api": "4.10.0",
+    "prettier": "1.16.4",
+    "typescript": "3.3.3333"
+  }
+}
