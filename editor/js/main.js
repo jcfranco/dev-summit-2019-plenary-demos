@@ -25,11 +25,20 @@ require([
     }
   });
 
+  // Create the Editor
+  let editor = new Editor({
+    view: view,
+    // Override the default template behavior of the Editor widget
+    supportingWidgetDefaults: {
+      featureTemplates: {
+        groupBy: customGroup
+      }
+    }
+  });
+
   // Create a custom group to separate the different areas of crime
   // This function takes an object containing a feature layer and feature template
-  function customGroup({
-    template
-  }) {
+  function customGroup({ template }) {
     let groupHeading;
     switch (template.name) {
       case "Criminal Homicide":
@@ -49,17 +58,6 @@ require([
     }
     return groupHeading;
   }
-
-  // Create the Editor
-  let editor = new Editor({
-    view: view,
-    // Override the default template behavior of the Editor widget
-    supportingWidgetDefaults: {
-      featureTemplates: {
-        groupBy: customGroup
-      }
-    }
-  });
 
   view.ui.add(editor, "top-right");
 });
