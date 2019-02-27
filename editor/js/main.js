@@ -62,12 +62,5 @@ require([
     });
 
     view.ui.add(editor, "top-right");
-
-    let intervalId = setInterval(() => {
-      let backButton = document.querySelector(".esri-editor__back-button");
-      if (backButton) {
-        backButton.style.display = "none";
-      }
-    }, 500);
   });
 });

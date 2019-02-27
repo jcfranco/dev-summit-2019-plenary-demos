@@ -10,3 +10,7 @@ body,
 .esri-editor .esri-item-list__scroller {
   max-height: 350px;
 }
+
+.esri-editor__back-button {
+  display: none;
+}
