@@ -42,59 +42,6 @@ require([
       ]
     };
 
-    /**
-     * Begin field and grouped field configs
-     */
-    let victimTheft = new FieldConfig({
-      name: "VictimofTheft",
-      label: "Have you been the victim of a bike theft?"
-    });
-
-    let replaceBike = new FieldConfig({
-      name: "ReplaceStolenBike",
-      label: "Did you replace your stolen bike?"
-    });
-
-    let wasBikeLocked = new FieldConfig({
-      name: "WasBikeLocked",
-      label: "Was bike locked when stolen?",
-      visibilityExpression: "$feature.victimofTheft == 1"
-    });
-
-    let whereLocked = new FieldConfig({
-      name: "WhatwasitLockesto",
-      label: "What was it locked to?",
-      visibilityExpression: "$feature.WasBikeLocked == 1"
-    });
-
-    let generalBikeTheftInfo = new FieldGroupConfig({
-      label: "General bike theft information",
-      description: "Applicable if you have been a victim of bike theft",
-      visibilityExpression: "$feature.VictimofTheft == 1",
-      fieldConfig: [replaceBike, wasBikeLocked, whereLocked]
-    });
-
-    let reportPolice = new FieldConfig({
-      name: "ReporttoGuards",
-      label: "Did you report the stolen bike to the police?",
-      visibilityExpression: "$feature.victimofTheft == 1"
-    });
-
-    let recoverBike = new FieldConfig({
-      name: "RecoverStolenBike",
-      label: "Did they recover the stolen bike?",
-      visibilityExpression: "$feature.ReporttoGuards == 1"
-    });
-
-    let policeInfo = new FieldGroupConfig({
-      label: "Police information",
-      description: "General information on reporting to police",
-      visibilityExpression: "$feature.VictimofTheft == 1",
-      fieldConfig: [reportPolice, recoverBike]
-    });
-    /**
-     * End of Configs
-     */
 
     // Create search widget
     let search = new Search({
@@ -111,8 +58,68 @@ require([
       container: "featureFormDiv",
       groupDisplay: "sequential", // only display one group at a time
       layer: featureLayer,
-      fieldConfig: [victimTheft, generalBikeTheftInfo, policeInfo]
+      fieldConfig: createFieldConfig()
     });
+
+    function createFieldConfig() {
+      let victimTheft = new FieldConfig({
+        name: "VictimofTheft",
+        label: "Have you been the victim of a bike theft?"
+      });
+
+      return [victimTheft, createGeneralBikeTheftInfoGroup(), createPoliceInfoGroup()]
+    }
+
+    function createGeneralBikeTheftInfoGroup() {
+      let replaceBike = new FieldConfig({
+        name: "ReplaceStolenBike",
+        label: "Did you replace your stolen bike?"
+      });
+
+      let wasBikeLocked = new FieldConfig({
+        name: "WasBikeLocked",
+        label: "Was bike locked when stolen?",
+        visibilityExpression: "$feature.victimofTheft == 1"
+      });
+
+      let whereLocked = new FieldConfig({
+        name: "WhatwasitLockesto",
+        label: "What was it locked to?",
+        visibilityExpression: "$feature.WasBikeLocked == 1"
+      });
+
+      let generalBikeTheftInfoGroup = new FieldGroupConfig({
+        label: "General bike theft information",
+        description: "Applicable if you have been a victim of bike theft",
+        visibilityExpression: "$feature.VictimofTheft == 1",
+        fieldConfig: [replaceBike, wasBikeLocked, whereLocked]
+      });
+
+      return generalBikeTheftInfoGroup;
+    }
+
+    function createPoliceInfoGroup() {
+      let reportPolice = new FieldConfig({
+        name: "ReporttoGuards",
+        label: "Did you report the stolen bike to the police?",
+        visibilityExpression: "$feature.victimofTheft == 1"
+      });
+
+      let recoverBike = new FieldConfig({
+        name: "RecoverStolenBike",
+        label: "Did they recover the stolen bike?",
+        visibilityExpression: "$feature.ReporttoGuards == 1"
+      });
+
+      let policeInfoGroup = new FieldGroupConfig({
+        label: "Police information",
+        description: "General information on reporting to police",
+        visibilityExpression: "$feature.VictimofTheft == 1",
+        fieldConfig: [reportPolice, recoverBike]
+      });
+
+      return policeInfoGroup
+    }
 
     // Listen to the feature form's submit event.
     let editFeature;
@@ -210,5 +217,4 @@ require([
         }
       });
     }
-
   });
