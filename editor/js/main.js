@@ -39,7 +39,7 @@ require([
           groupHeading = "Violent Crime";
           break;
         case "Arson":
-        case "Burlary":
+        case "Burglary":
         case "Larceny":
         case "Motor Vehicle Theft":
           groupHeading = "Property Crime";
