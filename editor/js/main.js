@@ -31,14 +31,14 @@ require([
     // Override the default template behavior of the Editor widget
     supportingWidgetDefaults: {
       featureTemplates: {
-        groupBy: customGroup
+        groupBy: groupBySeverity
       }
     }
   });
 
   // Create a custom group to separate the different areas of crime
   // This function takes an object containing a feature layer and feature template
-  function customGroup({ template }) {
+  function groupBySeverity({ template }) {
     let groupHeading;
     switch (template.name) {
       case "Criminal Homicide":
