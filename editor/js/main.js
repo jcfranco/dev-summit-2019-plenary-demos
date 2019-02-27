@@ -10,7 +10,7 @@ require([
   Editor
 ) {
 
-  // Create a map frm the referenced webmap item id
+  // Create a map from the referenced web map item id
   let webmap = new WebMap({
     portalItem: {
       id: "2e2ccb2c1cb14cf69631547e0c724bd7"
