@@ -1,15 +1,9 @@
 let view;
-require([
-  "esri/WebMap",
-  "esri/views/MapView",
-  "esri/widgets/Editor",
-  "dojo/domReady!"
-], function (
+require(["esri/WebMap", "esri/views/MapView", "esri/widgets/Editor", "dojo/domReady!"], function(
   WebMap,
   MapView,
   Editor
 ) {
-
   // Create a map from the referenced web map item id
   let webmap = new WebMap({
     portalItem: {
