@@ -78,8 +78,7 @@ require([
 
       let wasBikeLocked = new FieldConfig({
         name: "WasBikeLocked",
-        label: "Was bike locked when stolen?",
-        visibilityExpression: "$feature.victimofTheft == 1"
+        label: "Was bike locked when stolen?"
       });
 
       let whereLocked = new FieldConfig({
@@ -101,8 +100,7 @@ require([
     function createPoliceInfoGroup() {
       let reportPolice = new FieldConfig({
         name: "ReporttoGuards",
-        label: "Did you report the stolen bike to the police?",
-        visibilityExpression: "$feature.victimofTheft == 1"
+        label: "Did you report the stolen bike to the police?"
       });
 
       let recoverBike = new FieldConfig({
