@@ -22,5 +22,5 @@
     "suppressImplicitAnyIndexErrors": true,
     "target": "es5"
   },
-  "include": ["editor", "form-based-editing"]
+  "include": ["editor", "form-based-editing", "typings"]
 }
