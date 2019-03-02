@@ -50,39 +50,45 @@ const form = new FeatureForm({
 });
 
 function createFieldConfig() {
-  const victimTheft = new FieldConfig({
-    name: "VictimofTheft",
-    label: "Have you been the victim of a bike theft?"
-  });
+  return [
+    new FieldConfig({
+      name: "VictimofTheft",
+      label: "Have you been the victim of a bike theft?"
+    }),
 
-  return [victimTheft, createGeneralBikeTheftInfoGroup(), createPoliceInfoGroup()];
+    createGeneralBikeTheftInfoGroup(),
+
+    createPoliceInfoGroup()
+  ];
 }
 
 function createGeneralBikeTheftInfoGroup() {
-  const replaceBike = new FieldConfig({
-    name: "ReplaceStolenBike",
-    label: "Did you replace your stolen bike?"
-  });
-
-  const wasBikeLocked = new FieldConfig({
-    name: "WasBikeLocked",
-    label: "Was bike locked when stolen?"
-  });
-
-  const whereLocked = new FieldConfig({
-    name: "WhatwasitLockesto",
-    label: "What was it locked to?",
-    visibilityExpression: "$feature.WasBikeLocked == 1"
-  });
-
-  const generalBikeTheftInfoGroup = new FieldGroupConfig({
+  return new FieldGroupConfig({
     label: "General bike theft information",
     description: "Applicable if you have been a victim of bike theft",
-    visibilityExpression: "$feature.VictimofTheft == 1",
-    fieldConfig: [replaceBike, wasBikeLocked, whereLocked]
-  });
 
-  return generalBikeTheftInfoGroup;
+    visibilityExpression: "$feature.VictimofTheft == 1",
+
+    fieldConfig: [
+
+      new FieldConfig({
+        name: "WasBikeLocked",
+        label: "Was bike locked when stolen?"
+      }),
+
+      new FieldConfig({
+        name: "WhatwasitLockesto",
+        label: "What was it locked to?",
+        visibilityExpression: "$feature.WasBikeLocked == 1"
+      }),
+
+      new FieldConfig({
+        name: "ReplaceStolenBike",
+        label: "Did you replace your stolen bike?"
+      })
+
+    ]
+  });
 }
 
 function createPoliceInfoGroup() {
