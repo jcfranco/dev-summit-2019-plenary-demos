@@ -17,7 +17,7 @@ const view = new MapView({
   }
 });
 
-// Create the Editor
+// Create the Editor 💥
 const editor = new Editor({ view });
 
 view.ui.add(editor, "top-right");

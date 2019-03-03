@@ -78,28 +78,26 @@ function createFieldConfig() {
 function createGeneralBikeTheftInfoGroup() {
   return new FieldGroupConfig({
     label: "General bike theft information",
-    description: "Applicable if you have been a victim of bike theft",
+    description: "Applicable if you have been a victim of bike theft", // 🕵
 
     visibilityExpression: "$feature.VictimofTheft == 1",
 
     fieldConfig: [
-
       new FieldConfig({
         name: "WasBikeLocked",
-        label: "Was bike locked when stolen?"
+        label: "Was bike locked when stolen?" // 🔒
       }),
 
       new FieldConfig({
         name: "WhatwasitLockesto",
-        label: "What was it locked to?",
+        label: "What was it locked to?", // 🚩
         visibilityExpression: "$feature.WasBikeLocked == 1"
       }),
 
       new FieldConfig({
         name: "ReplaceStolenBike",
-        label: "Did you replace your stolen bike?"
+        label: "Did you replace your stolen bike?" // 🚲
       })
-
     ]
   });
 }
