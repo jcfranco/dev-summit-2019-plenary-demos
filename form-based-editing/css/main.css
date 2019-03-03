@@ -22,6 +22,14 @@ body {
   height: 200px;
 }
 
+.view-div--mapless-nearby-search-workaround {
+  position: absolute;
+  left: -9999999px;
+  top: -9999999px;
+  width: 1px;
+  height: 1px;
+}
+
 .esri-search {
   border: solid 1px #ccc;
   width: 100%;

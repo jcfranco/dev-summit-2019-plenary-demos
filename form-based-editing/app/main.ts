@@ -5,6 +5,8 @@ import FieldConfig = require("esri/widgets/FeatureForm/FieldConfig");
 import FieldGroupConfig = require("esri/widgets/FeatureForm/FieldGroupConfig");
 import Graphic = require("esri/Graphic");
 import Point = require("esri/geometry/Point");
+import MapView = require("esri/views/MapView");
+import Map = require("esri/Map");
 import FeatureLayerApplyEditsEdits = __esri.FeatureLayerApplyEditsEdits;
 
 // Create feature layer
@@ -24,15 +26,26 @@ const defaultParam = {
         y: 0
       }),
       attributes: {
-        VictimofTheft: "2",
+        VictimofTheft: "1",
         WasBikeLocked: "2"
       }
     })
   ]
 };
 
+// create dummy view for searchNearby
+const container = document.createElement("div");
+container.classList.add("view-div--mapless-nearby-search-workaround");
+document.body.appendChild(container);
+
+const view = new MapView({
+  container,
+  map: new Map({ basemap: "topo" })
+});
+
 // Create search widget
 const search = new Search({
+  view,
   popupEnabled: false,
   container: "searchDiv"
 });
