@@ -1,4 +1,4 @@
-define(["require", "exports", "esri/widgets/Search", "esri/layers/FeatureLayer", "esri/widgets/FeatureForm", "esri/widgets/FeatureForm/FieldConfig", "esri/widgets/FeatureForm/FieldGroupConfig", "esri/Graphic", "esri/geometry/Point"], function (require, exports, Search, FeatureLayer, FeatureForm, FieldConfig, FieldGroupConfig, Graphic, Point) {
+define(["require", "exports", "esri/widgets/Search", "esri/layers/FeatureLayer", "esri/widgets/FeatureForm", "esri/widgets/FeatureForm/FieldConfig", "esri/widgets/FeatureForm/FieldGroupConfig", "esri/Graphic", "esri/geometry/Point", "esri/views/MapView", "esri/Map"], function (require, exports, Search, FeatureLayer, FeatureForm, FieldConfig, FieldGroupConfig, Graphic, Point, MapView, Map) {
     Object.defineProperty(exports, "__esModule", { value: true });
     // Create feature layer
     var featureLayer = new FeatureLayer({
@@ -16,14 +16,23 @@ define(["require", "exports", "esri/widgets/Search", "esri/layers/FeatureLayer",
                     y: 0
                 }),
                 attributes: {
-                    VictimofTheft: "2",
+                    VictimofTheft: "1",
                     WasBikeLocked: "2"
                 }
             })
         ]
     };
+    // create dummy view for searchNearby
+    var container = document.createElement("div");
+    container.classList.add("view-div--mapless-nearby-search-workaround");
+    document.body.appendChild(container);
+    var view = new MapView({
+        container: container,
+        map: new Map({ basemap: "topo" })
+    });
     // Create search widget
     var search = new Search({
+        view: view,
         popupEnabled: false,
         container: "searchDiv"
     });
@@ -56,7 +65,7 @@ define(["require", "exports", "esri/widgets/Search", "esri/layers/FeatureLayer",
             fieldConfig: [
                 new FieldConfig({
                     name: "WasBikeLocked",
-                    label: "Was bike locked when stolen?"
+                    label: "Was bike locked when stolen?" // 🔒
                 }),
                 new FieldConfig({
                     name: "WhatwasitLockesto",
@@ -65,7 +74,7 @@ define(["require", "exports", "esri/widgets/Search", "esri/layers/FeatureLayer",
                 }),
                 new FieldConfig({
                     name: "ReplaceStolenBike",
-                    label: "Did you replace your stolen bike?"
+                    label: "Did you replace your stolen bike?" // 🚲
                 })
             ]
         });

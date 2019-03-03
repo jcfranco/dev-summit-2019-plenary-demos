@@ -13,7 +13,7 @@ define(["require", "exports", "esri/WebMap", "esri/views/MapView", "esri/widgets
             autoOpenEnabled: false //disable popups
         }
     });
-    // Create the Editor
+    // Create the Editor 💥
     var editor = new Editor({ view: view });
     view.ui.add(editor, "top-right");
 });
