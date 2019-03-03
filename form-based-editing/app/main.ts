@@ -27,7 +27,8 @@ const defaultParam = {
       }),
       attributes: {
         VictimofTheft: "1",
-        WasBikeLocked: "2"
+        WasBikeLocked: "2",
+        ReplaceStolenBike: "2"
       }
     })
   ]
