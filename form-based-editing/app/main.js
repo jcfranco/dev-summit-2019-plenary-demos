@@ -49,10 +49,6 @@ define(["require", "exports", "esri/widgets/Search", "esri/layers/FeatureLayer",
     });
     function createFieldConfig() {
         return [
-            new FieldConfig({
-                name: "VictimofTheft",
-                label: "Have you been the victim of a bike theft?"
-            }),
             createGeneralBikeTheftInfoGroup(),
             createPoliceInfoGroup()
         ];
