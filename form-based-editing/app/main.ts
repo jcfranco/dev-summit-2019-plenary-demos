@@ -28,7 +28,7 @@ const defaultParam = {
       attributes: {
         VictimofTheft: "1",
         WasBikeLocked: "2",
-        ReplaceStolenBike: "2"
+        ReplaceStolenBike: "1"
       }
     })
   ]
@@ -64,18 +64,13 @@ const form = new FeatureForm({
 });
 
 function createFieldConfig() {
-  return [
-    createGeneralBikeTheftInfoGroup(),
-    createPoliceInfoGroup()
-  ];
+  return [createGeneralBikeTheftInfoGroup(), createPoliceInfoGroup()];
 }
 
 function createGeneralBikeTheftInfoGroup() {
   return new FieldGroupConfig({
     label: "General bike theft information",
     description: "Applicable if you have been a victim of bike theft", // 🕵
-
-    visibilityExpression: "$feature.VictimofTheft == 1",
 
     fieldConfig: [
       new FieldConfig({
@@ -93,7 +88,9 @@ function createGeneralBikeTheftInfoGroup() {
         name: "ReplaceStolenBike",
         label: "Did you replace your stolen bike?" // 🚲
       })
-    ]
+    ],
+
+    visibilityExpression: "$feature.VictimofTheft == 1"
   });
 }
 
