@@ -18,7 +18,7 @@ define(["require", "exports", "esri/widgets/Search", "esri/layers/FeatureLayer",
                 attributes: {
                     VictimofTheft: "1",
                     WasBikeLocked: "2",
-                    ReplaceStolenBike: "2"
+                    ReplaceStolenBike: "1"
                 }
             })
         ]
@@ -49,16 +49,12 @@ define(["require", "exports", "esri/widgets/Search", "esri/layers/FeatureLayer",
         fieldConfig: createFieldConfig()
     });
     function createFieldConfig() {
-        return [
-            createGeneralBikeTheftInfoGroup(),
-            createPoliceInfoGroup()
-        ];
+        return [createGeneralBikeTheftInfoGroup(), createPoliceInfoGroup()];
     }
     function createGeneralBikeTheftInfoGroup() {
         return new FieldGroupConfig({
             label: "General bike theft information",
             description: "Applicable if you have been a victim of bike theft",
-            visibilityExpression: "$feature.VictimofTheft == 1",
             fieldConfig: [
                 new FieldConfig({
                     name: "WasBikeLocked",
@@ -73,7 +69,8 @@ define(["require", "exports", "esri/widgets/Search", "esri/layers/FeatureLayer",
                     name: "ReplaceStolenBike",
                     label: "Did you replace your stolen bike?" // 🚲
                 })
-            ]
+            ],
+            visibilityExpression: "$feature.VictimofTheft == 1"
         });
     }
     function createPoliceInfoGroup() {
